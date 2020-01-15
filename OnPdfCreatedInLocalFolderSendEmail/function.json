@@ -1,0 +1,28 @@
+{
+  "bindings": [
+    {
+      "name": "inputQueuePdfCreatedInLocal",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "pdf-created-in-local",
+      "connection": "AzureWebJobsStorage"
+    },
+    {
+      "type": "sendGrid",
+      "name": "message",
+      "direction": "out",
+      "apiKey": "mnalliahSGridApikey",
+      "from": "majuurnalliah@gmail.com",
+      "subject": "Expense Report (MS)",
+      "text": "Expense submitted (MS)"
+    },
+    {
+      "type": "queue",
+      "direction": "out",
+      "name": "outputQueuePdfEmailedToUser",
+      "queueName": "pdf-emailed-to-user",
+      "connection": "AzureWebJobsStorage"
+    }
+  ],
+  "disabled": false
+}
