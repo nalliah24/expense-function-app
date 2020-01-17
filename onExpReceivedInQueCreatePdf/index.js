@@ -18,14 +18,14 @@ module.exports = async function (context, queueData) {
       url: reportApiUrl,
       method: "get"
     });
-     context.log('>>>', response.data);
+     // context.log('>>>', response.data);
      if (response && response.data && response.data.entity.expense) {
         // expenseItems contains transaction id as GUID, 16 chars. Modify expItems to pick only first 8 chars of the id
         response.data.entity.expenseItems.map((d) => {
           d.id = d.id.substring(0,8);
           return d
         });
-        context.log('>>>==', response.data.entity);
+        // context.log('>>>==', response.data.entity);
         context.log('Ready to create pdf doc');
         pdfModule.create(response.data.entity).then(resFileName => {
             const msg = `Pdf created with this file name: ${resFileName}`

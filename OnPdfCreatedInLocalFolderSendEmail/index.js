@@ -1,6 +1,5 @@
 var util = require('util');
 const settings = require('../local.settings.json');
-// const azBlobMgr = require('../utils/azureBlobManager');
 const fs = require('fs');
 const axios = require('axios');
 
@@ -16,8 +15,16 @@ const axios = require('axios');
 // // }
 module.exports = async function (context, queueData) {
     context.log('>>>>', queueData);
-    if (!queueData.expenseId || !queueData.user.UserId || !queueData.fileName) {
-      context.log('User id, Expense id and fileName are required');
+    if (!queueData.user.UserId) {
+      context.log('User id is required to fetch email address');
+      return
+    };
+    if (!queueData.fileName) {
+      context.log('fileName is required to find from localfolder');
+      return
+    };
+    if (!queueData.expenseId) {
+      context.log('expenseId is required to send the id in the email');
       return
     };
     const expenseId = queueData.expenseId;
@@ -31,7 +38,7 @@ module.exports = async function (context, queueData) {
             url: usersApiUrl,
             method: "get"
         });
-        context.log('>>>', response.data);
+        // context.log('>>>', response.data);
         if (response && response.data && response.data.entity) {
             user = response.data.entity;
         }
