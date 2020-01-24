@@ -5,7 +5,7 @@
   },
   "Api": {
     "ExpenseReport": "https://ms-expense-api.azurewebsites.net/api/expenses",
-    "Users": "https://ms-expense-api.azurewebsites.net/api/users"
+    "Users": "https://ms-userprofile-api.azurewebsites.net/api/users"
   },
   "Blob": {
     "LocalReportFolder": "./reports/"

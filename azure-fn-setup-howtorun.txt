@@ -5,7 +5,7 @@ project: expense-api
 contains call to do httptrigger from client. QueueSendEmailController handles this call.
 
 Insicde the controller, an httpTrigger call is made to below address with request data..
-uri:  https://ms-expense-func-app.azurewebsites.net/api/onExpSubmittedAddToQueToCreatePdfAndSendMail?code=<< code from azure>>
+uri:  https://ms-expense-func-app.azurewebsites.net/api/onExpSubmittedAddToQueToCreatePdfAndSendMail?co..<< code from azure>>
 method: POST
 request data:
         -Headers @{ "content-type"="application/json" }
@@ -16,7 +16,7 @@ request data:
 1) Testing PDF is created:
 While developing, testing can be done using PShell.
 Command:
-iwr -Method POST -Uri https://ms-expense-func-app.azurewebsites.net/api/onExpSubmittedAddToQueToCreatePdfAndSendMail?code=<<.. code from azure ...>> -Headers @{ "content-type"="application/json" } -Body '{"user": {"userId": "user1"}, "expenseId": 2}'
+iwr -Method POST -Uri https://ms-expense-func-app.azurewebsites.net/api/onExpSubmittedAddToQueToCreatePdfAndSendMail?co..<<.. code from azure ...>> -Headers @{ "content-type"="application/json" } -Body '{"user": {"userId": "user1"}, "expenseId": 2}'
 
 In Azure open the editor and see if the request is coming through and pdf is created under reports folder.
 
@@ -41,7 +41,7 @@ add bindings to  function.json
       "name": "message",
       "direction": "out",
       "apiKey": "mnalliahSGridApikey",
-      "from": "majuurnalliah@gmail.com",
+      "from": "nnalliah2@gmail.com",
       "subject": "Expense Report (MS)",
       "text": "Expense submitted (MS)"
     },
@@ -51,7 +51,7 @@ add bindings to  function.json
 add config key and value
 goto: ms-expense-func-app  ->  configurations -> Applicaiton Settings -> Add New appliction setting
 
-sample: "mnalliahSGridApikey" : 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
+sample: "mnalliahSGridApikey" : << get the code from azure >>
 
 // How to get the config key.
 https://docs.microsoft.com/en-us/azure/sendgrid-dotnet-how-to-send-email
